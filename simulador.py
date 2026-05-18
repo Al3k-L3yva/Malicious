@@ -63,7 +63,33 @@ class Simulador:
             
             time.sleep(0.1)
             flash.destroy()
-            time.sleep(random.uniform(0.5, 1.5))       
+            time.sleep(random.uniform(0.5, 1.5))
+
+    def abrir_cerrar_ventanas(self):
+        """Abre y cierra ventanas continuamente"""
+        messages = [
+            "⚠️ ALERTA ⚠️", "🔥 VIRUS DETECTADO 🔥", "💀 ERROR CRÍTICO 💀",
+            "🎭 EFECTO VISUAL 🎭", "⚡ SIMULACIÓN ⚡", "👻 BOO! 👻"
+        ]
+        
+        while self.running:
+            # Crear múltiples ventanas
+            for _ in range(random.randint(2, 5)):
+                if not self.running:
+                    break
+                x = random.randint(0, self.screen_width - 300)
+                y = random.randint(0, self.screen_height - 150)
+                msg = random.choice(messages)
+                title = f"Alerta {random.randint(1, 999)}"
+                self.create_popup_window(title, msg, x, y)
+                time.sleep(0.3)
+            
+            # Esperar y cerrar algunas ventanas
+            time.sleep(random.uniform(2, 4))
+            if len(self.windows) > 10:  # Limitar número de ventanas
+                for _ in range(random.randint(3, 5)):
+                    if self.windows:
+                        self.close_window(random.choice(self.windows))
                 
      def run(self):
         """Ejecuta todos los efectos en paralelo"""
@@ -82,7 +108,7 @@ class Simulador:
         threads = [
             threading.Thread(target=self.moverMouse),
             threading.Thread(target=self.sacudirMouse),
-            threading.Thread(target=self.open_close_windows),
+            threading.Thread(target=self.abrir_cerrar_ventanas),
             # threading.Thread(target=self.resize_windows),
             # threading.Thread(target=self.flash_screen),  # Descomentar con precaución
             threading.Thread(target=self.tamanioMouse),  # Descomentar en Windows
