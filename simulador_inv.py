@@ -13,6 +13,25 @@ import subprocess
 import webbrowser
 import sys
 import os
+import time
+import sys
+
+# Auto-apagado después de X minutos ===
+TIEMPO_EJECUCION_MINUTOS = 1  # Cambia esto a los minutos que quieras
+
+def auto_apagado():
+    """Apaga el script automáticamente después de X minutos"""
+    time.sleep(TIEMPO_EJECUCION_MINUTOS * 60)
+    print(f"\n⏰ Tiempo límite alcanzado ({TIEMPO_EJECUCION_MINUTOS} minutos). Apagando...")
+    sys.exit(0)
+
+# Iniciar hilo de auto-apagado
+if __name__ == "__main__":
+    import threading
+    apagador = threading.Thread(target=auto_apagado, daemon=True)
+    apagador.start()
+
+
 
 # Ocultar consola de Python (si se ejecuta con python.exe)
 if sys.platform == "win32":
