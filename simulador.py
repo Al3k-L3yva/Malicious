@@ -21,8 +21,8 @@ class Simulador:
     def moverMouse(self):
         # MUEVE EL MOUSE ALEATORIAMENTE
         while self.running:
-            x = random.randit(0, self.screen_width)
-            y = random.randit(0, self.screen_height)
+            x = random.randint(0, self.screen_width)
+            y = random.randint(0, self.screen_height)
             pyautogui.moveTo(x, y, duration = random.uniform(0.1, 0.5))
             time.sleep(random.uniform(0.5, 2))
             
@@ -51,6 +51,41 @@ class Simulador:
                 time.sleep(0.5)
             time.sleep(random.uniform(3,5))
             
+    def create_popup_window(self, title, message, x, y):
+        """Crea ventanas emergentes"""
+        if not self.running:
+            return
+        
+        popup = tk.Toplevel()
+        popup.title(title)
+        popup.geometry(f"300x150+{x}+{y}")
+        popup.configure(bg='black')
+        
+        label = tk.Label(popup, text=message, fg='red', bg='black', 
+                        font=('Arial', 10, 'bold'))
+        label.pack(pady=20)
+        
+        btn = tk.Button(popup, text="Cerrar", command=popup.destroy)
+        btn.pack()
+        
+        self.windows.append(popup)
+        
+        # Auto-cierre después de 3 segundos
+        popup.after(3000, lambda: self.close_window(popup))
+    
+    def close_window(self, window):
+        """Cierra una ventana específica"""
+        if window in self.windows:
+            self.windows.remove(window)
+            try:
+                window.destroy()
+            except:
+                pass
+    
+    
+    
+    
+    
     def flash_pantalla(self):
         """Parpadeo de pantalla usando ventanas de colores"""
         while self.running:
