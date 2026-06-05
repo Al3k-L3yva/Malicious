@@ -2,3 +2,8 @@ if ($host.Version.Major -ge 3){$ErrAction= "ignore"}else{$ErrAction= "SilentlyCo
 
 
 find /Users -name '*.png' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
+
+
+Get-ChildItem -Path "C:\Users" -Filter "*.png" -Recurse -File -ErrorAction SilentlyContinue | 
+    Where-Object { $_.Length -lt 500KB } | 
+    Select-Object -First 5 -Property FullName, Length
