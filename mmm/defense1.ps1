@@ -14,7 +14,7 @@ if (-not $isAdmin) {
 }
 
 Write-Host "==============================================" -ForegroundColor Cyan
-Write-Host " STAGE 02 - VALIDACIÓN DE POSTURA DEFENSIVA" -ForegroundColor Cyan
+Write-Host " STAGE 02 - VALIDACION DE POSTURA DEFENSIVA" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host ""
 
